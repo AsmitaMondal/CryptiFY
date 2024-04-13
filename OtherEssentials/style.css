@@ -1,0 +1,38 @@
+.root {
+    -fx-background-color: lavender;
+}
+
+
+.text-field {
+    -fx-background-color: #FFFFFF; /* White background */
+    -fx-text-inner-color: black; /* Black text */
+    -fx-border-color: purple;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+.button {
+    -fx-background-color: #7B68EE; /* Lavender background */
+    -fx-text-fill: white; /* White text */
+    -fx-font-weight: bold; /* Bold font */    
+        -fx-font-size: 15px;
+    
+}
+
+.button:hover {
+    -fx-background-color: #6A5ACD; /* Darker lavender background on hover */
+}
+.label {
+    -fx-text-fill: purple;
+    -fx-font-size: 16px;
+    -fx-font-family: "Helvetica"; /* Change the font family */
+    
+    
+}
+
+.combo-box {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-font-size: 15px;
+    
+}
