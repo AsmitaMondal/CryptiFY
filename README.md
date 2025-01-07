@@ -58,9 +58,11 @@ The following have been used to create this project:
 
 **Development Environment:**
 
-1. Eclipse IDE for Java Developers (Version 2024-03)
-2. MySQL Workbench (Version 8.0)
-3. Java Development Kit (JDK) (Version 21.0.1 LTS)
+1. **Eclipse IDE**: Download from [eclipse.org](https://www.eclipse.org/downloads/). (Version 2024-03 or above)
+2. **JavaFX SDK**: Download from [openjfx.io](https://openjfx.io/).
+3. **MySQL Connector JAR**: Download from [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/).
+4. **MySQL Workbench**: Download from [MySQL Workbench](https://dev.mysql.com/downloads/workbench/). (Version 8.0 or above)
+5. **Java Development Kit (JDK)**: Ensure Java 11 or higher is installed. (Version 21.0.1 LTS or above)
 
 **Java Libraries and Dependencies:**
 
@@ -88,6 +90,125 @@ Microsoft Windows 11 Home
 **Display Resolution:**
 Full HD WVA Display
 
+
+# Steps to Run the Project 🚀
+
+
+## Step 1: Create a New Java Project 🛠️
+
+1. Open Eclipse and go to **File > New > Java Project**.
+2. Enter the project name as `Try` and click **Finish**.
+3. In the **src** folder, create a package named `application`.
+4. Add two files: `main.java` and `main1.java`.
+5. Ensure `module-info.java` exists in the `src` folder.
+
+---
+
+## Step 2: Add JavaFX SDK 🖼️
+
+### Download JavaFX SDK:
+1. Visit [openjfx.io](https://openjfx.io/) and download the JavaFX SDK for your operating system.
+2. Extract the downloaded ZIP file to a folder (e.g., `C:\JavaFX`).
+
+### Add JavaFX JARs to Eclipse:
+1. Right-click your project, select **Properties > Java Build Path > Libraries > Modulepath**.
+2. Click **Add External JARs** and navigate to the `lib` folder inside the extracted JavaFX SDK.
+3. Select all JAR files and click **Apply and Close**.
+
+### Update `module-info.java`:
+Add the required JavaFX modules. Example:
+```java
+module Try {
+	requires javafx.controls;
+	requires java.sql;
+	requires javafx.graphics;
+	
+	opens application to javafx.graphics, javafx.fxml;
+}
+
+```
+
+---
+
+## Step 3: Add MySQL Connector 🔗
+
+### Download MySQL Connector JAR:
+1. Go to [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) and download the latest version.
+2. Extract the ZIP file.
+
+### Add the JAR to Eclipse:
+1. Right-click your project, go to **Properties > Java Build Path > Libraries > Modulepath**.
+2. Click **Add External JARs** and select the MySQL Connector JAR file.
+3. Click **Apply and Close**.
+
+---
+
+## Step 4: Configure MySQL Database 🗄️
+
+1. **Set Up MySQL Workbench:**
+   - Download and install MySQL Workbench.
+   - Create a new database schema with your desired name (eg: `mds`).
+
+2. **Create a table (eg: `cryptify1`):**
+   - Run the following SQL script in MySQL Workbench to create the table:
+     ```sql
+     CREATE TABLE cryptify1 (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         encrypted_text VARCHAR(255),
+         key_used VARCHAR(255),
+         file_path VARCHAR(255)
+     );
+     ```
+
+3. **Write Java Code for Database Connection:**
+   - Use the following sample code in `main.java` to connect to the database and perform operations:
+     ```java
+     try {
+         Class.forName("com.mysql.cj.jdbc.Driver");
+         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mds", "root", "pass");
+         System.out.println("Successfully Connected to Database!");
+
+         String key = generateKey("HeHe1234", secretCode);
+         String cipher_text = cipherText("HeHe1234", key);
+         encryptFile(cipher_text, filePath, keySize, con);
+
+         System.out.println("Encryption successful.");
+         con.close();
+     } catch (Exception e) {
+         e.printStackTrace();
+     }
+     ```
+
+   - Replace `HeHe1234`, `"root"` and `"pass"` with your desired secret keyword, MySQL username and password.
+
+---
+
+## Step 5: Configure VM Arguments ⚙️
+
+1. Right-click the project, select **Run As > Run Configurations**.
+2. In the **VM arguments** section, add:
+   ```
+   --module-path "path-to-javafx-sdk\lib" --add-modules javafx.controls,javafx.fxml
+   ```
+   Replace `path-to-javafx-sdk` with the actual path to your JavaFX SDK.
+
+---
+
+## Step 6: Write Your Code ✍️
+
+- Implement encryption and decryption logic in `main.java` and `main1.java`. You can directly copy the codes given in this repository and perform necessary replacemnets as mentioned.
+- Use JavaFX components for the GUI if needed.
+  
+**You can directly copy the codes given in this repository and perform necessary replacemnets as mentioned.**
+---
+
+## Step 7: Run the Project ▶️
+
+1. Click **Run > Run As > Java Application**.
+2. If you encounter any errors, ensure the paths and VM arguments are correct.
+
+---
+
 # Performance Comparison ⚖️
 
 A comparison was performed on the files that could be used for the project and the following was observed:
@@ -109,6 +230,8 @@ This difference can be accounted for by the presence of free-form text in TXT fi
 - To incorporate more file types such as audio, images and pdf thus streamlining the process for better usability and scalability.
 - To create a deployable web application that can be accessed by users globally.
 - To use more encryption layers, algorithms and techniques so as to make the process more robust and defiant to attacks.
+
+---
 
 # Additional Information 😃
 
