@@ -237,11 +237,11 @@ public class Main extends Application {
         // Call the existing encryptFile method with user input
         try {
         	Class.forName("com.mysql.cj.jdbc.Driver");
-        	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/mds","root","roy1968");
+        	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/db_name","root","pass");
         	System.out.println("Successfully Connected to Database!");
             	
-            String key=generateKey("AsMiTa2001",secretCode);
-            String cipher_text = cipherText("AsMiTa2001", key);
+            String key=generateKey("your_keyword",secretCode);
+            String cipher_text = cipherText("your_keyword", key);
             encryptFile(cipher_text, filePath, keySize, con);
             System.out.println("Encryption successful.");
             con.close();
