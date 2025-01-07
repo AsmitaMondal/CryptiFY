@@ -116,7 +116,7 @@ public class Main1 extends Application {
         try {
             Scanner scanner = new Scanner(System.in);
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mds", "root", "roy1968");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_name", "root", "pass");
             System.out.println("Successfully Connected to Database!");
             decryptFile(scanner, con, secretCode, encryptedFilePath, base64Key, base64IV);
             con.close();
@@ -144,7 +144,7 @@ public class Main1 extends Application {
         	String text = rs.getString("secret_code");
             String key = generateKey(text, secretCode);
             String original_text = originalText(text, key);
-            if (original_text.equals("AsMiTa2001")) {
+            if (original_text.equals("your_keyword")) {
                 // Read encrypted bytes from file
                 byte[] encryptedBytes = readFileContent(encryptedFilePath);
 
